@@ -39,7 +39,7 @@ function App() {
   function handleCreateOrEditActivity(activity: Activity){
     activity.id 
       ? setActivities([...activities.filter(x => x.id !== activity.id), activity]) 
-      : setActivities([...activities,activity]);
+      : setActivities([...activities,{...activity, id: uuid()}]);
     setEditMode(false);
     setSelectedActivity(activity);
   }
