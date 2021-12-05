@@ -11,9 +11,10 @@ interface Props {
     selectActivity: (id: string) => void;
     cancelSelectActivity: () => void;
     closeForm: () => void;
+    deleteActiviy: (id: string) => void;
 }
 
-export default function ActivityList({activities, selectActivity, closeForm}: Props){
+export default function ActivityList({activities, selectActivity, closeForm, deleteActiviy}: Props){
     return(
         <Segment>
             <Item.Group divided>
@@ -31,7 +32,7 @@ export default function ActivityList({activities, selectActivity, closeForm}: Pr
                                 selectActivity(activity.id)
                                 closeForm()
                             }} floated='right' content='View' color='blue'/>
-                            <Button floated='right' content='Delete' color='red'/>
+                            <Button onClick={() => deleteActiviy(activity.id)} floated='right' content='Delete' color='red'/>
                             <Label basic content={activity.category}/>
                         </Item.Extra>
                     </Item.Content>
