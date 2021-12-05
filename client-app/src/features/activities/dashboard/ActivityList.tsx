@@ -10,9 +10,10 @@ interface Props {
     activities: Activity[];
     selectActivity: (id: string) => void;
     cancelSelectActivity: () => void;
+    closeForm: () => void;
 }
 
-export default function ActivityList({activities, selectActivity}: Props){
+export default function ActivityList({activities, selectActivity, closeForm}: Props){
     return(
         <Segment>
             <Item.Group divided>
@@ -26,7 +27,10 @@ export default function ActivityList({activities, selectActivity}: Props){
                             <div>{activity.city}, {activity.venue}</div>
                         </Item.Description>
                         <Item.Extra>
-                            <Button onClick={() => selectActivity(activity.id)} floated='right' content='View' color='blue'/>
+                            <Button onClick={() => {
+                                selectActivity(activity.id)
+                                closeForm()
+                            }} floated='right' content='View' color='blue'/>
                             <Button floated='right' content='Delete' color='red'/>
                             <Label basic content={activity.category}/>
                         </Item.Extra>
